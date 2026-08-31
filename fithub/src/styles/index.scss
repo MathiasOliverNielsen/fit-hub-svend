@@ -1,0 +1,12 @@
+﻿/**
+ * Main SCSS file
+ * Imports all variables and resets
+ */
+
+@use "./variables.scss" as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
