@@ -1,40 +1,69 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Card, Button } from '../../components'
+import { useState, useMemo } from 'react'
+import { useSwipeable } from 'react-swipeable'
+import { useFetch } from '../../hooks'
+import { ClassCard } from './ClassCard'
 import './Classes.scss'
 
-export function Classes() {
-  const [classes, setClasses] = useState([])
-  const [loading, setLoading] = useState(true)
+const API_BASE = 'http://localhost:3000'
 
-  useEffect(() => {
-    // TODO: Fetch classes from API
-    setLoading(false)
-  }, [])
+const getImageUrl = (url) => {
+  if (url.startsWith('http')) return url
+  return `${API_BASE}${url}`
+}
+
+export function Classes() {
+  const [carouselOffset, setCarouselOffset] = useState(0)
+  const { data, isLoading } = useFetch('/teams', { cache: true })
+  const teams = data || []
+
+  const featuredTeam = useMemo(() => {
+    if (teams.length > 0) {
+      return teams[Math.floor(Math.random() * teams.length)]
+    }
+    return null
+  }, [teams.length])
+
+  const handlers = useSwipeable({
+    onSwipedLeft: () => {
+      setCarouselOffset(prev => Math.min(prev + 1, teams.length - 3))
+    },
+    onSwipedRight: () => {
+      setCarouselOffset(prev => Math.max(prev - 1, 0))
+    },
+  })
+
+  if (isLoading) return <div className="classes-page">Loading...</div>
 
   return (
-    <div className="classes-page">
-      <div className="page-header">
-        <h1>Træningshold</h1>
-        <Link to="/search" className="search-link">
-          Søg
-        </Link>
-      </div>
+    <main className="classes-page">
+      {featuredTeam && (
+        <section className="hero-section">
+          <h2 className="section-title">Popular Classes</h2>
+          <ClassCard
+            image={getImageUrl(featuredTeam.image.url)}
+            name={featuredTeam.name}
+            instructor={featuredTeam.user.name}
+            variant="hero"
+          />
+        </section>
+      )}
 
-      <div className="classes-list">
-        {classes.length === 0 && !loading && (
-          <p className="empty-state">Ingen hold fundet</p>
-        )}
-        {classes.map(cls => (
-          <Card key={cls.id}>
-            <h3>{cls.name}</h3>
-            <p>{cls.description}</p>
-            <Link to={`/classes/${cls.id}`}>
-              <Button fullWidth>Se detaljer</Button>
-            </Link>
-          </Card>
-        ))}
-      </div>
-    </div>
+      <section className="carousel-section" {...handlers}>
+        <h2 className="section-title">Classes for you</h2>
+        <div className="carousel-container" style={{
+          transform: `translateX(-${carouselOffset * (100 / 3)}%)`,
+        }}>
+          {teams.map(team => (
+            <ClassCard
+              key={team.id}
+              image={getImageUrl(team.image.url)}
+              name={team.name}
+              rating={5}
+              variant="carousel"
+            />
+          ))}
+        </div>
+      </section>
+    </main>
   )
 }

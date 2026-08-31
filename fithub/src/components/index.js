@@ -9,6 +9,4 @@ export { Box } from './Box/Box.jsx';
 export { InputField } from './InputField/InputField.jsx';
 export { Button } from './Button/Button.jsx';
 export { Card } from './Card/Card.jsx';
-export { Header } from './Header/Header.jsx';
-export { Footer } from './Footer/Footer.jsx';
 export { Layout } from './Layout/Layout.jsx';
