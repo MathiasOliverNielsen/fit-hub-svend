@@ -29,7 +29,8 @@ export function InputField({
   error = null,
   disabled = false,
   required = false,
-  className = ''
+  className = '',
+  autoComplete = 'on'
 }) {
   return (
     <div className={`input-field ${className}`.trim()}>
@@ -48,6 +49,7 @@ export function InputField({
         onBlur={onBlur}
         placeholder={placeholder}
         disabled={disabled}
+        autoComplete={autoComplete}
         className={`input-control ${error ? 'error' : ''}`.trim()}
         aria-invalid={!!error}
         aria-describedby={error ? `${name}-error` : null}

@@ -1,4 +1,4 @@
-@use '../../styles/variables.scss' as *;
+@use "../../styles/variables.scss" as *;
 
 .class-card {
   overflow: hidden;
@@ -17,23 +17,28 @@
   }
 
   .class-card-name {
-    margin: 0;
-    font-size: $font-size-base;
+    font-size: $font-size-2xl;
     font-weight: $font-weight-semibold;
     color: $color-text-h;
   }
 
   .class-card-rating {
     margin-top: $spacing-sm;
-    font-size: $font-size-lg;
+    font-size: $font-size-base;
   }
 
   &.class-card-hero {
     position: relative;
     height: 100%;
-    width: 60%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
 
+    .class-card-name {
+      font-size: 3rem;
+      font-weight: $font-weight-bold;
+      color: white;
+    }
     .class-card-image {
       height: 100%;
     }
@@ -61,8 +66,9 @@
 
   &.class-card-carousel {
     flex-shrink: 0;
-    width: calc((100% - $spacing-lg) / 3);
-    height: 200px;
+    min-width: calc((100% - ($spacing-md * 3)) / 2);
+    width: calc((100% - ($spacing-md * 3)) / 2);
+    height: 100%;
     display: flex;
     flex-direction: column;
 
@@ -73,6 +79,7 @@
 
     .class-card-content {
       flex-shrink: 0;
+      padding: $spacing-sm;
     }
   }
 }

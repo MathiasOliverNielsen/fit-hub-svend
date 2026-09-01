@@ -15,8 +15,6 @@
     .welcome-figure {
       position: relative;
       height: 100%;
-      margin: 0;
-      padding: 0;
 
       .workout-image {
         width: 100%;
@@ -33,7 +31,6 @@
 
         h1 {
           font-size: 5rem;
-          margin: 0;
           color: white;
           text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
@@ -56,8 +53,6 @@
 
     .welcome-figure {
       height: 100%;
-      margin: 0;
-      padding: 0;
 
       .workout-image {
         width: 100%;
@@ -78,20 +73,7 @@
       border: none;
       border-radius: $border-radius-md;
       font-size: $font-size-xl;
-      // font-weight: $font-weight-semibold;
       cursor: pointer;
-      box-shadow: $shadow-lg;
-      transition:
-        background-color $transition-base,
-        transform $transition-fast;
-
-      &:active {
-        transform: scale(0.98);
-      }
-
-      &:hover {
-        background-color: var(--color-primary-dark);
-      }
     }
   }
 }

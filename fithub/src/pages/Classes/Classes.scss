@@ -3,19 +3,10 @@
 .classes-page {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  gap: 0;
-
-  .section-title {
-    font-size: $font-size-xl;
-    font-weight: $font-weight-semibold;
-    color: $color-text-h;
-    margin: 0;
-    padding: $spacing-md;
-  }
+  height: 100vh;
 
   .hero-section {
-    height: 70%;
+    height: 60%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -29,17 +20,13 @@
 
     .class-card-hero {
       flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: $spacing-md;
-      height: auto;
-      box-shadow: $shadow-md;
+      width: 100%;
+      box-shadow: none;
     }
   }
 
   .carousel-section {
-    height: 30%;
+    height: 40%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -56,9 +43,11 @@
       flex: 1;
       display: flex;
       gap: $spacing-md;
-      transition: transform $transition-base;
       padding: $spacing-md;
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
     }
 
     .class-card-carousel {
