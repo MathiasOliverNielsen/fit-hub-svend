@@ -34,13 +34,20 @@
     margin: 0;
     border-radius: 0;
 
+    .class-card-image {
+      height: 100%;
+      width: 100%;
+    }
+
     .class-card-name {
+      position: absolute;
+      bottom: $spacing-lg;
+      left: $spacing-lg;
       font-size: 3rem;
       font-weight: $font-weight-bold;
       color: white;
-    }
-    .class-card-image {
-      height: 100%;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      z-index: 10;
     }
 
     .class-card-content {

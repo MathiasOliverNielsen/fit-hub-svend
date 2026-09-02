@@ -1,0 +1,39 @@
+@use '../../styles/variables.scss' as *;
+
+.trainer-card {
+  display: flex;
+  overflow: hidden;
+  border-radius: $border-radius-md;
+  background: white;
+  box-shadow: $shadow-sm;
+
+  .trainer-image {
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .trainer-info {
+    flex: 1;
+    padding: $spacing-md;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    overflow: hidden;
+
+    .trainer-name {
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      color: $color-text-h;
+    }
+
+    .trainer-description {
+      font-size: $font-size-sm;
+      color: $color-text;
+      line-height: 1.4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

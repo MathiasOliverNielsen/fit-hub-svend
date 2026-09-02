@@ -10,7 +10,7 @@ export function formatPrice(amount, currency = '') {
   if (amount === null || amount === undefined) return '';
   const formatted = Number(amount).toLocaleString('en-US', {
     minimumFractionDigits: 0,
-    maximumFractionDigits: 2
+    maximumFractionDigits: 2,
   });
   return currency ? `${formatted} ${currency}` : formatted;
 }
@@ -26,7 +26,7 @@ export function formatDate(dateString) {
     return date.toLocaleDateString('da-DK', {
       day: '2-digit',
       month: '2-digit',
-      year: 'numeric'
+      year: 'numeric',
     });
   } catch {
     return '';
@@ -40,7 +40,7 @@ export function formatCurrency(amount, locale = 'en-US', currency = 'USD') {
   if (amount === null || amount === undefined) return '';
   return Number(amount).toLocaleString(locale, {
     style: 'currency',
-    currency
+    currency,
   });
 }
 
@@ -87,6 +87,3 @@ export function formatNumber(value) {
   if (value === null || value === undefined) return '';
   return Number(value).toLocaleString('en-US');
 }
-
-
-

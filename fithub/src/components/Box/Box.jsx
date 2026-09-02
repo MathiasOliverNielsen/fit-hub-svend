@@ -20,21 +20,7 @@
 
 import "./Box.scss";
 
-export function Box({
-  children,
-  p = "0",
-  padding = p,
-  m = "0",
-  margin = m,
-  bg = "transparent",
-  backgroundColor = bg,
-  radius = "0",
-  borderRadius = radius,
-  border = "none",
-  minHeight = "auto",
-  className = "",
-  style = {},
-}) {
+export function Box({ children, p = "0", padding = p, m = "0", margin = m, bg = "transparent", backgroundColor = bg, radius = "0", borderRadius = radius, border = "none", minHeight = "auto", className = "", style = {}, ...props }) {
   const spacingToRem = (value) => {
     if (typeof value === "number") return `${value}rem`;
     if (typeof value === "string" && !isNaN(value)) return `${value}rem`;
@@ -52,9 +38,8 @@ export function Box({
   };
 
   return (
-    <div className={`box ${className}`.trim()} style={boxStyle}>
+    <div className={`box ${className}`.trim()} style={boxStyle} {...props}>
       {children}
     </div>
   );
 }
-

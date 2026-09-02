@@ -13,35 +13,23 @@
  * @returns {JSX.Element} Flex container
  */
 
-import './FlexContainer.scss';
+import "./FlexContainer.scss";
 
-export function FlexContainer({
-  children,
-  direction = 'row',
-  justify = 'flex-start',
-  align = 'stretch',
-  gap = '1rem',
-  wrap = false,
-  className = '',
-  style = {}
-}) {
-  const gapValue = typeof gap === 'number' ? `${gap}rem` : gap;
-  
+export function FlexContainer({ children, direction = "row", justify = "flex-start", align = "stretch", gap = "1rem", wrap = false, className = "", style = {} }) {
+  const gapValue = typeof gap === "number" ? `${gap}rem` : gap;
+
   const flexStyle = {
-    display: 'flex',
+    display: "flex",
     flexDirection: direction,
     justifyContent: justify,
     alignItems: align,
     gap: gapValue,
-    flexWrap: wrap ? 'wrap' : 'nowrap',
-    ...style
+    flexWrap: wrap ? "wrap" : "nowrap",
+    ...style,
   };
 
   return (
-    <div 
-      className={`flex-container ${className}`.trim()}
-      style={flexStyle}
-    >
+    <div className={`flex-container ${className}`.trim()} style={flexStyle}>
       {children}
     </div>
   );
