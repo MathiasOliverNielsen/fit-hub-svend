@@ -11,3 +11,5 @@ export { Button } from './Button/Button.jsx';
 export { Card } from './Card/Card.jsx';
 export { Layout } from './Layout/Layout.jsx';
 export { Navigation } from './Navigation/Navigation.jsx';
+export { TrainerCard } from './TrainerCard/TrainerCard.jsx';
+export { HeroSection } from './HeroSection/HeroSection.jsx';

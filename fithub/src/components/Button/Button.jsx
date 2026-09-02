@@ -14,36 +14,13 @@
  * @returns {JSX.Element} Button element
  */
 
-import './Button.scss';
+import "./Button.scss";
 
-export function Button({
-  children,
-  onClick = null,
-  variant = 'primary',
-  size = 'md',
-  disabled = false,
-  loading = false,
-  fullWidth = false,
-  type = 'button',
-  className = ''
-}) {
-  const classes = [
-    'button',
-    `button-${variant}`,
-    `button-${size}`,
-    fullWidth && 'full-width',
-    (disabled || loading) && 'disabled',
-    className
-  ].filter(Boolean).join(' ');
+export function Button({ children, onClick = null, variant = "primary", size = "md", disabled = false, loading = false, fullWidth = false, type = "button", className = "" }) {
+  const classes = ["button", `button-${variant}`, `button-${size}`, fullWidth && "full-width", (disabled || loading) && "disabled", className].filter(Boolean).join(" ");
 
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      disabled={disabled || loading}
-      className={classes}
-      aria-busy={loading}
-    >
+    <button type={type} onClick={onClick} disabled={disabled || loading} className={classes} aria-busy={loading}>
       {loading ? (
         <>
           <span className="spinner"></span>
@@ -55,4 +32,3 @@ export function Button({
     </button>
   );
 }
-

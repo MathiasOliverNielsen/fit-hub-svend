@@ -1,7 +1,94 @@
-.search-page {
+@use "../../styles/variables.scss" as *;
+
+.search-page-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 1rem;
-  gap: 1.5rem;
+  padding: $spacing-lg;
+  gap: $spacing-lg;
+
+  .search-header {
+    text-align: center;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: $font-weight-semibold;
+      color: $color-text-h;
+      margin-bottom: $spacing-md;
+    }
+
+    .search-subtitle {
+      font-size: $font-size-base;
+      color: $color-text;
+    }
+  }
+
+  .search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .search-icon {
+      position: absolute;
+      left: $spacing-md;
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: $spacing-lg $spacing-lg $spacing-lg calc($spacing-lg + 28px);
+      font-size: $font-size-base;
+      border: none;
+      outline: none;
+
+      &::placeholder {
+        color: $color-text-light;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .no-results {
+    text-align: center;
+    padding: $spacing-2xl $spacing-lg;
+    color: $color-text;
+    font-size: $font-size-base;
+  }
+
+  .results-section {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: $font-weight-semibold;
+      color: $color-text-h;
+    }
+
+    .classes-list {
+      display: flex;
+      gap: $spacing-md;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding: $spacing-md 0;
+
+      .class-card-carousel {
+        flex-shrink: 0;
+        min-width: calc((100% - ($spacing-md * 2)) / 1.8);
+        width: calc((100% - ($spacing-md * 2)) / 1.8);
+      }
+    }
+
+    .trainers-grid {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+    }
+  }
+
 }

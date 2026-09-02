@@ -78,4 +78,11 @@ export function validateRange(value, min, max) {
   return !isNaN(num) && num >= min && num <= max;
 }
 
-
+/**
+ * Tjek for farlige tegn (XSS prevention)
+ */
+export function validateNoScriptTags(value) {
+  if (!value || typeof value !== 'string') return true;
+  const dangerousRegex = /<|>|script|onerror|onclick|javascript|eval/i;
+  return !dangerousRegex.test(value);
+}
