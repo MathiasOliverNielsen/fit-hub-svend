@@ -1,0 +1,86 @@
+@use "../../styles/variables.scss" as *;
+
+.my-schedule-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: $spacing-lg;
+  gap: $spacing-lg;
+
+  .schedule-header {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: $font-weight-bold;
+      color: $color-text-h;
+    }
+
+    .welcome-message {
+      font-size: $font-size-base;
+      color: $color-text;
+    }
+  }
+
+  .schedule-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .schedule-items {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+    }
+
+    .schedule-item {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+      padding: $spacing-md $spacing-lg;
+      background: white;
+      border-radius: $border-radius-md;
+      box-shadow: $shadow-sm;
+      cursor: pointer;
+      transition: box-shadow $transition-base;
+
+      &:active {
+        box-shadow: $shadow-lg;
+      }
+
+      .schedule-item-time {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: $spacing-lg;
+
+        .schedule-item-day {
+          font-size: $font-size-sm;
+          font-weight: $font-weight-semibold;
+          color: $color-text-h;
+        }
+
+        .schedule-item-clock {
+          font-size: $font-size-sm;
+          color: $color-text;
+        }
+      }
+
+      .schedule-item-name {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: $color-text-h;
+      }
+    }
+
+    .no-schedule {
+      text-align: center;
+      padding: $spacing-2xl $spacing-lg;
+      color: $color-text;
+      font-size: $font-size-base;
+    }
+  }
+}

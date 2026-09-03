@@ -13,3 +13,4 @@ export { Layout } from './Layout/Layout.jsx';
 export { Navigation } from './Navigation/Navigation.jsx';
 export { TrainerCard } from './TrainerCard/TrainerCard.jsx';
 export { HeroSection } from './HeroSection/HeroSection.jsx';
+export { ConfirmModal } from './ConfirmModal/ConfirmModal.jsx';

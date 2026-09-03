@@ -1,14 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useFetch } from "../../hooks";
+import { useFetch, useBookings } from "../../hooks";
+import { useAuthContext } from "../../context/AuthContext";
 import { apiCall } from "../../utils";
-import { TrainerCard, HeroSection } from "../../components";
+import { TrainerCard, HeroSection, ConfirmModal } from "../../components";
 import "./ClassDetail.scss";
 
 export function ClassDetail() {
   const { id } = useParams();
   const { data: classData, isLoading } = useFetch(`/teams/${id}`);
+  const { isAuthenticated } = useAuthContext();
+  const { isEnrolledInClass, getBookingId, signUpForClass, leaveClass, loading: bookingLoading } = useBookings();
   const [trainer, setTrainer] = useState(null);
+  const [showLeaveModal, setShowLeaveModal] = useState(false);
 
   useEffect(() => {
     if (classData?.userId) {
@@ -18,6 +22,27 @@ export function ClassDetail() {
     }
   }, [classData?.userId]);
 
+  const handleSignUp = async () => {
+    const result = await signUpForClass(parseInt(id));
+    if (!result.success) {
+      console.error("Sign up failed:", result.error);
+    }
+  };
+
+  const handleLeaveClick = () => {
+    setShowLeaveModal(true);
+  };
+
+  const handleConfirmLeave = async () => {
+    const bookingId = getBookingId(parseInt(id));
+    if (bookingId) {
+      const result = await leaveClass(bookingId);
+      if (result.success) {
+        setShowLeaveModal(false);
+      }
+    }
+  };
+
   if (isLoading) return <div className="class-detail-page">Loading...</div>;
   if (!classData) return <div className="class-detail-page">Class not found</div>;
 
@@ -25,11 +50,35 @@ export function ClassDetail() {
     return Math.random() * 100 + 150;
   };
 
+  const isEnrolled = isEnrolledInClass(parseInt(id));
+
   return (
     <div className="class-detail-page">
       <HeroSection image={classData.image?.url} height="50vh">
-        <h1 className="class-detail-title">{classData.name}</h1>
+        <div className="class-hero-content">
+          <h1 className="class-detail-title">{classData.name}</h1>
+          {isAuthenticated && (
+            <button
+              className="signup-button"
+              onClick={isEnrolled ? handleLeaveClick : handleSignUp}
+              disabled={bookingLoading}
+            >
+              {bookingLoading ? "Loading..." : isEnrolled ? "Leave" : "Sign up"}
+            </button>
+          )}
+        </div>
       </HeroSection>
+
+      <ConfirmModal
+        isOpen={showLeaveModal}
+        title="Leave Class"
+        message="Are you sure you want to leave this class?"
+        confirmText="Leave"
+        cancelText="Cancel"
+        onConfirm={handleConfirmLeave}
+        onCancel={() => setShowLeaveModal(false)}
+        loading={bookingLoading}
+      />
 
       <div className="class-detail-card">
         <section className="schedule-section">

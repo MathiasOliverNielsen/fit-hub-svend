@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks";
+import { useAuthContext } from "../../context/AuthContext";
 import { useForm } from "../../hooks";
 import { InputField, Button, FlexContainer, Box } from "../../components";
 import "./Navigation.scss";
 
 export function Navigation({ isOpen, onClose }) {
   const navigate = useNavigate();
-  const { isAuthenticated, login, logout, isLoading, error } = useAuth();
+  const { isAuthenticated, login, logout, isLoading, error } = useAuthContext();
   const form = useForm({ email: "", password: "" });
   const [showLoginForm, setShowLoginForm] = useState(false);
 
@@ -71,7 +71,7 @@ export function Navigation({ isOpen, onClose }) {
             {isAuthenticated && (
               <>
                 <li>
-                  <button onClick={() => handleNavClick("/calendar")} className="nav-item">
+                  <button onClick={() => handleNavClick("/my-schedule")} className="nav-item">
                     My Schedule
                   </button>
                 </li>

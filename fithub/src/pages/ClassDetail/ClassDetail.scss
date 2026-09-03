@@ -1,15 +1,44 @@
-@use '../../styles/variables.scss' as *;
+@use "../../styles/variables.scss" as *;
 
 .class-detail-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 
+  .class-hero-content {
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-lg;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+  }
+
   .class-detail-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: $font-weight-bold;
     color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .signup-button {
+    padding: 1rem 3rem 1rem 2rem;
+    background-color: $color-surface;
+    color: black;
+    border: none;
+    border-radius: $border-radius-md;
+    font-size: $font-size-xl;
+    cursor: pointer;
+    transition: opacity $transition-base;
+    margin-right: -12%;
+    white-space: nowrap;
+
+    &:disabled {
+      opacity: 0.6;
+    }
+
+    &:active:not(:disabled) {
+      opacity: 0.8;
+    }
   }
 
   .class-detail-card {

@@ -29,7 +29,7 @@ export function useForm(initialValues = {}, onValidate = null) {
         case 'email':
           return validation.validateEmail(value) ? null : 'Invalid email address';
         case 'password':
-          return validation.validatePassword(value) ? null : 'Password must be at least 6 characters with 1 uppercase letter and 1 number';
+          return validation.validatePassword(value) ? null : 'Password must be at least 6 characters';
         case 'phone':
           return validation.validatePhone(value) ? null : 'Invalid phone number';
         case 'url':

@@ -10,8 +10,9 @@ export function Layout({ children }) {
 
   const isWelcomePage = location.pathname === "/";
   const isHomePage = location.pathname === "/home";
+  const isMySchedulePage = location.pathname === "/my-schedule";
   const showNavButton = !isWelcomePage;
-  const showBackButton = !isWelcomePage && !isHomePage;
+  const showBackButton = !isWelcomePage && !isHomePage && !isMySchedulePage;
 
   return (
     <div className="layout">

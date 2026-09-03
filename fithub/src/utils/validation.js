@@ -13,12 +13,11 @@ export function validateEmail(email) {
 }
 
 /**
- * Tjek adgangskode (mindst 6 tegn, stort bogstav og tal)
+ * Tjek adgangskode (mindst 6 tegn)
  */
 export function validatePassword(password) {
   if (!password || typeof password !== 'string') return false;
-  const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
-  return passwordRegex.test(password);
+  return password.length >= 6;
 }
 
 /**
