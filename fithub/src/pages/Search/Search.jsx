@@ -22,8 +22,27 @@ export function Search() {
 
   const teams = allTeams || [];
   const users = userIds || [];
+  const [teamRatings, setTeamRatings] = useState({});
 
-  // Fetch individual trainers by ID to get full data
+  const getAverageRating = (teamId) => {
+    return Math.round(teamRatings[teamId] || 0);
+  };
+
+  const fetchRatingsForTeams = async (teamIds) => {
+    const ratings = {};
+    for (const teamId of teamIds) {
+      try {
+        const data = await apiCall(`/ratings/${teamId}`);
+        // Backend returns aggregate format: {"_avg":{"numStars":4}}
+        ratings[teamId] = data?._avg?.numStars || 0;
+      } catch (err) {
+        ratings[teamId] = 0;
+      }
+    }
+    setTeamRatings(ratings);
+  };
+
+  // Fetch individual trainers by ID and ratings for all teams
   useEffect(() => {
     if (userIds && userIds.length > 0) {
       const selectedIds = userIds
@@ -36,7 +55,11 @@ export function Search() {
         .then((trainers) => setRandomTrainers(trainers))
         .catch((err) => console.error("Error fetching trainers:", err));
     }
-  }, [userIds]);
+
+    if (teams.length > 0) {
+      fetchRatingsForTeams(teams.map((t) => t.id));
+    }
+  }, [userIds, teams.length]);
 
   const handleSearch = async (e) => {
     if (e.key === "Enter" && query.trim() && validateNoScriptTags(query)) {
@@ -62,6 +85,9 @@ export function Search() {
         console.error("Error fetching trainer details:", err);
         return [];
       });
+
+      // Fetch ratings for search results
+      await fetchRatingsForTeams(filteredTeams.map((t) => t.id));
 
       setClassResults(filteredTeams);
       setTrainerResults(filteredUsersFull);
@@ -94,7 +120,7 @@ export function Search() {
                   <h2 className="section-title">Classes</h2>
                   <div className="classes-list">
                     {classResults.map((team) => (
-                      <ClassCard key={team.id} id={team.id} image={team.image.url} name={team.name} instructor={team.user.name} variant="carousel" />
+                      <ClassCard key={team.id} id={team.id} image={team.image.url} name={team.name} instructor={team.user.name} rating={getAverageRating(team.id)} variant="carousel" />
                     ))}
                   </div>
                 </div>
@@ -119,7 +145,7 @@ export function Search() {
             <h2 className="section-title">Public classes</h2>
             <div className="classes-list">
               {teams.map((team) => (
-                <ClassCard key={team.id} id={team.id} image={team.image.url} name={team.name} instructor={team.user.name} variant="carousel" />
+                <ClassCard key={team.id} id={team.id} image={team.image.url} name={team.name} instructor={team.user.name} rating={getAverageRating(team.id)} variant="carousel" />
               ))}
             </div>
           </div>

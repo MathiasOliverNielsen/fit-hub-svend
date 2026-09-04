@@ -6,12 +6,9 @@ import { apiCall } from "../../utils";
 import "./MySchedule.scss";
 
 export function MySchedule() {
-  console.log("MySchedule mounted");
   const navigate = useNavigate();
   const { user } = useAuthContext();
-  console.log("User:", user);
   const { bookings, loading } = useBookings();
-  console.log("useBookings hook called");
   const [scheduleItems, setScheduleItems] = useState([]);
   const [itemsLoading, setItemsLoading] = useState(true);
 
@@ -19,7 +16,6 @@ export function MySchedule() {
     const fetchScheduleItems = async () => {
       try {
         setItemsLoading(true);
-        console.log("Bookings:", bookings);
         const items = await Promise.all(
           bookings.map(async (booking) => {
             const teamData = await apiCall(`/teams/${booking.teamId}`);
@@ -32,7 +28,6 @@ export function MySchedule() {
             };
           }),
         );
-        console.log("Schedule items:", items);
         setScheduleItems(items);
       } catch (err) {
         console.error("Error fetching schedule items:", err);

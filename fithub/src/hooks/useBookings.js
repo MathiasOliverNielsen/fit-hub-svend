@@ -10,9 +10,7 @@ export function useBookings() {
     try {
       setLoading(true);
       setError(null);
-      console.log("Fetching bookings...");
       const data = await apiCall("/bookings");
-      console.log("Bookings fetched:", data);
       setBookings(data || []);
     } catch (err) {
       setError(err.message);
@@ -23,7 +21,6 @@ export function useBookings() {
   };
 
   useEffect(() => {
-    console.log("useBookings mounted, fetching...");
     fetchBookings();
   }, []);
 

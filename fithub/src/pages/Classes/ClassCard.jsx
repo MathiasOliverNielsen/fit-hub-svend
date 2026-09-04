@@ -26,7 +26,11 @@ export function ClassCard({ id, image, name, instructor, rating = 5, variant = "
       <FlexContainer direction="column" className="class-card-content" gap={0}>
         <h3 className="class-card-name">{name}</h3>
 
-        {variant === "carousel" && <div className="class-card-rating">{"⭐".repeat(rating)}</div>}
+        {variant === "carousel" && (
+          <div className="class-card-rating">
+            <div className="rating-stars">{"⭐".repeat(rating)}</div>
+          </div>
+        )}
       </FlexContainer>
     </Box>
   );

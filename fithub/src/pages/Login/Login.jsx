@@ -9,7 +9,6 @@ export function Login() {
 
   const handleSubmit = form.handleSubmit(async (values) => {
     // TODO: Call API to login
-    console.log("Login:", values);
     navigate("/classes");
   });
 

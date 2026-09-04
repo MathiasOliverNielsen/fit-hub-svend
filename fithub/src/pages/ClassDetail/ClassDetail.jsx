@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useFetch, useBookings } from "../../hooks";
+import { useFetch, useBookings, useRatings } from "../../hooks";
 import { useAuthContext } from "../../context/AuthContext";
 import { apiCall } from "../../utils";
-import { TrainerCard, HeroSection, ConfirmModal } from "../../components";
+import { TrainerCard, HeroSection, ConfirmModal, RatingSection } from "../../components";
 import "./ClassDetail.scss";
 
 export function ClassDetail() {
@@ -11,6 +11,7 @@ export function ClassDetail() {
   const { data: classData, isLoading } = useFetch(`/teams/${id}`);
   const { isAuthenticated } = useAuthContext();
   const { isEnrolledInClass, getBookingId, signUpForClass, leaveClass, loading: bookingLoading } = useBookings();
+  const { averageRating, submitRating, loading: ratingLoading, error: ratingError } = useRatings(parseInt(id));
   const [trainer, setTrainer] = useState(null);
   const [showLeaveModal, setShowLeaveModal] = useState(false);
 
@@ -81,6 +82,14 @@ export function ClassDetail() {
       />
 
       <div className="class-detail-card">
+        <RatingSection
+          teamId={parseInt(id)}
+          averageRating={averageRating}
+          onSubmitRating={submitRating}
+          isAuthenticated={isAuthenticated}
+          isLoading={ratingLoading}
+          error={ratingError}
+        />
         <section className="schedule-section">
           <h2 className="schedule-title">Schedule</h2>
           <div className="schedule-info">
