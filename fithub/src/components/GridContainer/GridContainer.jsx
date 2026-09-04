@@ -12,37 +12,23 @@
  * @returns {JSX.Element} Grid container
  */
 
-import './GridContainer.scss';
+import "./GridContainer.scss";
 
-export function GridContainer({
-  children,
-  columns = 1,
-  gap = '1rem',
-  autoFit = true,
-  minColWidth = '200px',
-  className = '',
-  style = {}
-}) {
-  const gapValue = typeof gap === 'number' ? `${gap}rem` : gap;
-  
-  const gridTemplateColumns = autoFit
-    ? `repeat(auto-fit, minmax(${minColWidth}, 1fr))`
-    : `repeat(${columns}, 1fr)`;
-  
+export function GridContainer({ children, columns = 1, gap = "1rem", autoFit = true, minColWidth = "200px", className = "", style = {} }) {
+  const gapValue = typeof gap === "number" ? `${gap}rem` : gap;
+
+  const gridTemplateColumns = autoFit ? `repeat(auto-fit, minmax(${minColWidth}, 1fr))` : `repeat(${columns}, 1fr)`;
+
   const gridStyle = {
-    display: 'grid',
+    display: "grid",
     gridTemplateColumns,
     gap: gapValue,
-    ...style
+    ...style,
   };
 
   return (
-    <div 
-      className={`grid-container ${className}`.trim()}
-      style={gridStyle}
-    >
+    <div className={`grid-container ${className}`.trim()} style={gridStyle}>
       {children}
     </div>
   );
 }
-

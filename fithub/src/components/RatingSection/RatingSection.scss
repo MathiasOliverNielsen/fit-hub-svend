@@ -1,0 +1,109 @@
+@use "../../styles/variables.scss" as *;
+
+.rating-section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: white;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+
+  .rating-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .rating-title {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      color: $color-text-h;
+    }
+
+    .rating-count {
+      font-size: $font-size-sm;
+      color: $color-text;
+    }
+  }
+
+  .rating-form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .rating-prompt {
+      font-size: $font-size-base;
+      color: $color-text;
+    }
+
+    .star-selector {
+      display: flex;
+      gap: $spacing-sm;
+
+      .star-button {
+        background: none;
+        border: 2px solid $color-border;
+        border-radius: $border-radius-sm;
+        padding: $spacing-sm;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: all $transition-base;
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        &.active {
+          border-color: $color-primary;
+          background-color: rgba($color-primary, 0.1);
+        }
+
+        &:active:not(:disabled) {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    .submit-rating-button {
+      padding: $spacing-md $spacing-lg;
+      background-color: $color-primary;
+      color: white;
+      border: none;
+      border-radius: $border-radius-md;
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      cursor: pointer;
+      transition: opacity $transition-base;
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      &:active:not(:disabled) {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .already-rated {
+    font-size: $font-size-sm;
+    color: $color-text;
+    font-style: italic;
+  }
+
+  .login-to-rate {
+    font-size: $font-size-sm;
+    color: $color-text;
+    font-style: italic;
+  }
+
+  .rating-error {
+    font-size: $font-size-sm;
+    color: #e74c3c;
+    padding: $spacing-sm;
+    background-color: rgba(#e74c3c, 0.1);
+    border-radius: $border-radius-sm;
+  }
+}

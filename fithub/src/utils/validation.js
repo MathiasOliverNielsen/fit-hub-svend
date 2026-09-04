@@ -13,12 +13,11 @@ export function validateEmail(email) {
 }
 
 /**
- * Tjek adgangskode (mindst 6 tegn, stort bogstav og tal)
+ * Tjek adgangskode (mindst 6 tegn)
  */
 export function validatePassword(password) {
   if (!password || typeof password !== 'string') return false;
-  const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
-  return passwordRegex.test(password);
+  return password.length >= 6;
 }
 
 /**
@@ -78,4 +77,11 @@ export function validateRange(value, min, max) {
   return !isNaN(num) && num >= min && num <= max;
 }
 
-
+/**
+ * Tjek for farlige tegn (XSS prevention)
+ */
+export function validateNoScriptTags(value) {
+  if (!value || typeof value !== 'string') return true;
+  const dangerousRegex = /<|>|script|onerror|onclick|javascript|eval/i;
+  return !dangerousRegex.test(value);
+}

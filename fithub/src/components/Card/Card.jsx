@@ -12,46 +12,18 @@
  * @returns {JSX.Element} Card element
  */
 
-import './Card.scss';
+import "./Card.scss";
 
-export function Card({
-  children,
-  header = null,
-  footer = null,
-  title = null,
-  className = '',
-  onClick = null,
-  hoverable = false
-}) {
-  const classes = [
-    'card',
-    hoverable && 'hoverable',
-    className
-  ].filter(Boolean).join(' ');
+export function Card({ children, header = null, footer = null, title = null, className = "", onClick = null, hoverable = false }) {
+  const classes = ["card", hoverable && "hoverable", className].filter(Boolean).join(" ");
 
   return (
-    <div 
-      className={classes}
-      onClick={onClick}
-      role={onClick ? 'button' : undefined}
-      tabIndex={onClick ? 0 : undefined}
-    >
-      {(header || title) && (
-        <div className="card-header">
-          {title ? <h3 className="card-title">{title}</h3> : header}
-        </div>
-      )}
-      
-      <div className="card-body">
-        {children}
-      </div>
-      
-      {footer && (
-        <div className="card-footer">
-          {footer}
-        </div>
-      )}
+    <div className={classes} onClick={onClick} role={onClick ? "button" : undefined} tabIndex={onClick ? 0 : undefined}>
+      {(header || title) && <div className="card-header">{title ? <h3 className="card-title">{title}</h3> : header}</div>}
+
+      <div className="card-body">{children}</div>
+
+      {footer && <div className="card-footer">{footer}</div>}
     </div>
   );
 }
-

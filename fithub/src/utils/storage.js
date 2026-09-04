@@ -8,11 +8,11 @@
  */
 export function getStorageItem(key, defaultValue = null) {
   if (typeof localStorage === 'undefined') return defaultValue;
-  
+
   try {
     const item = localStorage.getItem(key);
     if (item === null) return defaultValue;
-    
+
     try {
       return JSON.parse(item);
     } catch {
@@ -29,7 +29,7 @@ export function getStorageItem(key, defaultValue = null) {
  */
 export function setStorageItem(key, value) {
   if (typeof localStorage === 'undefined') return false;
-  
+
   try {
     if (value === null || value === undefined) {
       localStorage.removeItem(key);
@@ -49,7 +49,7 @@ export function setStorageItem(key, value) {
  */
 export function removeStorageItem(key) {
   if (typeof localStorage === 'undefined') return false;
-  
+
   try {
     localStorage.removeItem(key);
     return true;
@@ -64,7 +64,7 @@ export function removeStorageItem(key) {
  */
 export function clearStorage() {
   if (typeof localStorage === 'undefined') return false;
-  
+
   try {
     localStorage.clear();
     return true;
@@ -79,7 +79,7 @@ export function clearStorage() {
  */
 export function storageKeyExists(key) {
   if (typeof localStorage === 'undefined') return false;
-  
+
   try {
     return localStorage.getItem(key) !== null;
   } catch {
@@ -92,7 +92,7 @@ export function storageKeyExists(key) {
  */
 export function getAllStorageKeys() {
   if (typeof localStorage === 'undefined') return [];
-  
+
   try {
     return Object.keys(localStorage);
   } catch {
@@ -105,7 +105,7 @@ export function getAllStorageKeys() {
  */
 export function getStorageSize() {
   if (typeof localStorage === 'undefined') return 0;
-  
+
   try {
     let size = 0;
     for (let key in localStorage) {
@@ -118,7 +118,3 @@ export function getStorageSize() {
     return 0;
   }
 }
-
-
-
-

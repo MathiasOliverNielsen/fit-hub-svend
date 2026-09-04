@@ -28,7 +28,7 @@ export function useFetch(url, options = {}) {
     const cacheKey = `${url}_${optionsString}`;
     const cachedData = cache.get(cacheKey);
     const cachedTime = cacheTimestamps.get(cacheKey);
-    const isCacheValid = cachedData && cachedTime && (Date.now() - cachedTime < cacheTimeout);
+    const isCacheValid = cachedData && cachedTime && Date.now() - cachedTime < cacheTimeout;
 
     if (options.cache && isCacheValid) {
       setData(cachedData);
@@ -45,8 +45,8 @@ export function useFetch(url, options = {}) {
         body: options.body,
         headers: {
           'Content-Type': 'application/json',
-          ...options.headers
-        }
+          ...options.headers,
+        },
       });
 
       const responseData = result.data || result;
@@ -60,7 +60,7 @@ export function useFetch(url, options = {}) {
       setError({
         message: err.message || 'Failed to fetch data',
         status: err.status,
-        details: err.details
+        details: err.details,
       });
       setData(null);
     } finally {
@@ -84,9 +84,6 @@ export function useFetch(url, options = {}) {
     refetch,
     isError: !!error,
     isLoading: loading,
-    isSuccess: !loading && !error && data !== null
+    isSuccess: !loading && !error && data !== null,
   };
 }
-
-
-

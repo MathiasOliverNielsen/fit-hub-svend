@@ -1,22 +1,28 @@
-import { useNavigate } from 'react-router-dom'
-import { Button } from '../../components'
-import './Welcome.scss'
+import { useNavigate } from "react-router-dom";
+import { HeroSection } from "../../components";
+import "./Welcome.scss";
 
 export function Welcome() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
-    <div className="welcome-page">
-      <div className="welcome-content">
-        <h1>FitHub</h1>
-        <p>Find og join træningshold</p>
-        <Button onClick={() => navigate('/classes')} fullWidth>
-          Kom i gang
-        </Button>
-        <Button onClick={() => navigate('/login')} variant="secondary" fullWidth>
-          Log ind
-        </Button>
-      </div>
-    </div>
-  )
+    <main className="welcome-page">
+      <HeroSection image="/imgs/WorkoutUpper.svg" height="50vh">
+        <div className="welcome-text">
+          <h1>
+            Believe <br /> Yourself
+          </h1>
+          <h2>
+            <strong></strong> Train like a pro
+          </h2>
+        </div>
+      </HeroSection>
+
+      <HeroSection image="/imgs/WorkoutLower.png" height="50vh">
+        <button onClick={() => navigate("/home")} className="start-button" style={{ position: 'absolute', bottom: '20%', right: '-5%' }} aria-label="Start training now">
+          Start training
+        </button>
+      </HeroSection>
+    </main>
+  );
 }

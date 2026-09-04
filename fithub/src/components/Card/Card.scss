@@ -1,5 +1,5 @@
 ﻿// Card.scss
-@use '../../styles/variables.scss' as *;
+@use "../../styles/variables.scss" as *;
 
 .card {
   background-color: $color-background;
@@ -26,7 +26,6 @@
 }
 
 .card-title {
-  margin: 0;
   font-size: $font-size-lg;
   color: $color-text;
 }

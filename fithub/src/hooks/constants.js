@@ -6,14 +6,14 @@ export const FORM_STATES = {
   IDLE: 'idle',
   LOADING: 'loading',
   ERROR: 'error',
-  SUCCESS: 'success'
+  SUCCESS: 'success',
 };
 
 export const STORAGE_KEYS = {
   AUTH_TOKEN: 'authToken',
   USER_DATA: 'userData',
   FORM_CACHE: 'formCache',
-  PREFERENCES: 'preferences'
+  PREFERENCES: 'preferences',
 };
 
 export const API_ENDPOINTS = {
@@ -21,5 +21,5 @@ export const API_ENDPOINTS = {
   LOGOUT: '/auth/logout',
   REGISTER: '/auth/register',
   USER: '/user',
-  REFRESH: '/auth/refresh'
+  REFRESH: '/auth/refresh',
 };

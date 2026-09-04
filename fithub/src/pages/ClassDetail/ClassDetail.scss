@@ -1,38 +1,88 @@
+@use "../../styles/variables.scss" as *;
+
 .class-detail-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 1rem;
-  gap: 1.5rem;
 
-  .page-header {
+  .class-hero-content {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    flex-direction: row;
+    gap: $spacing-lg;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+  }
 
-    h1 {
-      margin: 0;
-      flex: 1;
+  .class-detail-title {
+    font-size: 2.5rem;
+    font-weight: $font-weight-bold;
+    color: white;
+  }
+
+  .signup-button {
+    padding: 1rem 3rem 1rem 2rem;
+    background-color: $color-surface;
+    color: black;
+    border: none;
+    border-radius: $border-radius-md;
+    font-size: $font-size-xl;
+    cursor: pointer;
+    transition: opacity $transition-base;
+    margin-right: -12%;
+    white-space: nowrap;
+
+    &:disabled {
+      opacity: 0.6;
     }
 
-    .back-btn {
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 0.5rem;
-      color: var(--text-h);
+    &:active:not(:disabled) {
+      opacity: 0.8;
     }
   }
 
-  .class-info {
+  .class-detail-card {
+    flex: 1;
+    background: white;
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+    padding: $spacing-lg;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: $spacing-lg;
 
-    p {
-      margin: 0;
-      line-height: 1.6;
+    .schedule-section {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+
+      .schedule-title {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-semibold;
+        color: $color-text-h;
+      }
+
+      .schedule-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .schedule-day {
+          font-size: $font-size-base;
+          font-weight: $font-weight-semibold;
+          color: $color-text-h;
+        }
+
+        .schedule-time {
+          font-size: $font-size-base;
+          color: $color-text;
+        }
+      }
+
+      .class-description {
+        font-size: $font-size-base;
+        color: $color-text;
+        line-height: 1.6;
+      }
     }
   }
 }

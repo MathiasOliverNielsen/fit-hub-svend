@@ -4,14 +4,15 @@
  */
 
 // Brand Colors
-$color-primary: #00a676;
-$color-primary-dark: #1d8439;
-$color-secondary: #952e0d;
+$color-primary: #f4a88e;
+$color-primary-dark: #e89371;
+$color-secondary: #e4e4e4;
 
 // Neutral Colors
 $color-background: #ffffff;
 $color-surface: #f5f5f5;
 $color-text: #000000;
+$color-text-h: #08060d;
 $color-text-light: #666666;
 $color-text-lighter: #999999;
 $color-border: #dddddd;
@@ -20,10 +21,12 @@ $color-border-light: #f5f5f5;
 // Semantic colors
 $color-success: $color-primary;
 $color-success-bg: rgba($color-primary, 0.1);
-$color-error: $color-secondary;
-$color-error-bg: rgba($color-secondary, 0.1);
-$color-warning: $color-secondary;
-$color-warning-bg: rgba($color-secondary, 0.1);
+$color-danger: #D32F2F;
+$color-danger-bg: rgba($color-danger, 0.1);
+$color-error: #D32F2F;
+$color-error-bg: rgba($color-error, 0.1);
+$color-warning: #FFA726;
+$color-warning-bg: rgba($color-warning, 0.1);
 $color-info: $color-primary;
 
 // Spacing Scale (8px base)

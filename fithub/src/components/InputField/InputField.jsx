@@ -16,21 +16,9 @@
  * @returns {JSX.Element} Input field
  */
 
-import './InputField.scss';
+import "./InputField.scss";
 
-export function InputField({
-  name,
-  label = '',
-  value = '',
-  onChange = null,
-  onBlur = null,
-  type = 'text',
-  placeholder = '',
-  error = null,
-  disabled = false,
-  required = false,
-  className = ''
-}) {
+export function InputField({ name, label = "", value = "", onChange = null, onBlur = null, type = "text", placeholder = "", error = null, disabled = false, required = false, className = "", autoComplete = "on" }) {
   return (
     <div className={`input-field ${className}`.trim()}>
       {label && (
@@ -48,7 +36,8 @@ export function InputField({
         onBlur={onBlur}
         placeholder={placeholder}
         disabled={disabled}
-        className={`input-control ${error ? 'error' : ''}`.trim()}
+        autoComplete={autoComplete}
+        className={`input-control ${error ? "error" : ""}`.trim()}
         aria-invalid={!!error}
         aria-describedby={error ? `${name}-error` : null}
       />
@@ -60,4 +49,3 @@ export function InputField({
     </div>
   );
 }
-

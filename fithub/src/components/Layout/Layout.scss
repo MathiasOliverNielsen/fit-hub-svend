@@ -1,9 +1,56 @@
-@use '../../styles/variables.scss' as *;
+@use "../../styles/variables.scss" as *;
 
 .layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
+
+  .back-button {
+    position: fixed;
+    top: $spacing-md;
+    left: $spacing-md;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: $spacing-lg;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity $transition-base;
+    min-width: 48px;
+    min-height: 48px;
+
+    img {
+      width: 28px;
+      height: 28px;
+      pointer-events: none;
+    }
+
+    &:active {
+      opacity: 0.7;
+    }
+  }
+
+  .hamburger-button {
+    position: fixed;
+    top: $spacing-md;
+    right: $spacing-md;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: $spacing-md;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
 
   .layout-main {
     flex: 1;

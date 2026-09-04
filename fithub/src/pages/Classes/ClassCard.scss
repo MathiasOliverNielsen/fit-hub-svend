@@ -1,0 +1,92 @@
+@use "../../styles/variables.scss" as *;
+
+.class-card {
+  overflow: hidden;
+  border-radius: $border-radius-md;
+  background: white;
+
+  .class-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .class-card-content {
+    padding: $spacing-md;
+  }
+
+  .class-card-name {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    color: $color-text-h;
+  }
+
+  .class-card-rating {
+    margin-top: $spacing-sm;
+    font-size: $font-size-base;
+  }
+
+  &.class-card-hero {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+
+    .class-card-image {
+      height: 100%;
+      width: 100%;
+    }
+
+    .class-card-name {
+      position: absolute;
+      bottom: $spacing-lg;
+      left: $spacing-lg;
+      font-size: 3rem;
+      font-weight: $font-weight-bold;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+    }
+
+    .class-card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+      color: white;
+      width: 100%;
+      padding: $spacing-lg;
+
+      .class-card-name {
+        color: white;
+      }
+
+      .class-card-instructor {
+        margin-top: $spacing-sm;
+        font-size: $font-size-sm;
+        color: rgba(255, 255, 255, 0.9);
+      }
+    }
+  }
+
+  &.class-card-carousel {
+    flex-shrink: 0;
+    min-width: calc((100% - ($spacing-md * 3)) / 2);
+    width: calc((100% - ($spacing-md * 3)) / 2);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .class-card-image {
+      flex: 1;
+      height: auto;
+    }
+
+    .class-card-content {
+      flex-shrink: 0;
+      padding: $spacing-sm;
+    }
+  }
+}

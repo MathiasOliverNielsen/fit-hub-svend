@@ -42,7 +42,7 @@ export function useAuth() {
 
       const response = await apiCall('/auth/login', {
         method: 'POST',
-        body: { username: email, password }
+        body: { username: email, password },
       });
 
       const { accessToken, user: userData } = response;
@@ -99,9 +99,6 @@ export function useAuth() {
     logout,
     updateUser,
     clearError,
-    isLoading: loading
+    isLoading: loading,
   };
 }
-
-
-
